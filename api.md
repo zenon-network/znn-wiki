@@ -124,7 +124,8 @@ One parameter of type `string` that represents the `name`.
 
 #### Response
 
-An `array` of `entries` and each item in the list contains the following fields:
+An `object` containing the total amount of registered pillars as `number` in field `count`
+and an `array` in field `list`, where each item contains the following fields:
 
 * `name` of type `string`: name of the registered Pillar
 
@@ -160,44 +161,47 @@ An `array` of `entries` and each item in the list contains the following fields:
 {
     "jsonrpc": "2.0",
     "id": 3,
-    "result": [
-        {
-            "name": "testname1",
-            "rank": 0,
-            "type": 1,
-            "ownerAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
-            "producerAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
-            "withdrawAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
-            "giveMomentumRewardPercentage": 0,
-            "giveDelegateRewardPercentage": 100,
-            "isRevocable": false,
-            "revokeCooldown": 135840,
-            "revokeTimestamp": 0,
-            "currentStats": {
-                "producedMomentums": 0,
-                "expectedMomentums": 62
+    "result": {
+        "count": 73,
+        "list": [
+            {
+                "name": "testname1",
+                "rank": 0,
+                "type": 1,
+                "ownerAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
+                "producerAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
+                "withdrawAddress": "z1qz5p95pa8c6wq9pvfkg642gjv4nnaayx6vhm2w",
+                "giveMomentumRewardPercentage": 0,
+                "giveDelegateRewardPercentage": 100,
+                "isRevocable": false,
+                "revokeCooldown": 135840,
+                "revokeTimestamp": 0,
+                "currentStats": {
+                    "producedMomentums": 0,
+                    "expectedMomentums": 62
+                },
+                "weight": 350364710594425
             },
-            "weight": 350364710594425
-        },
-        {
-            "name": "testname2",
-            "rank": 1,
-            "type": 1,
-            "ownerAddress": "z1qz3f6svf805tewktk5yf9tn8cdhe2236wdnugk",
-            "producerAddress": "z1qqna5fwl9cfd4h7xyg54qdg3nlxgjhntekdlw4",
-            "withdrawAddress": "z1qz3f6svf805tewktk5yf9tn8cdhe2236wdnugk",
-            "giveMomentumRewardPercentage": 0,
-            "giveDelegateRewardPercentage": 100,
-            "isRevocable": false,
-            "revokeCooldown": 94740,
-            "revokeTimestamp": 0,
-            "currentStats": {
-                "producedMomentums": 0,
-                "expectedMomentums": 73
-            },
-            "weight": 237213658559729
-        }
-    ]
+            {
+                "name": "testname2",
+                "rank": 1,
+                "type": 1,
+                "ownerAddress": "z1qz3f6svf805tewktk5yf9tn8cdhe2236wdnugk",
+                "producerAddress": "z1qqna5fwl9cfd4h7xyg54qdg3nlxgjhntekdlw4",
+                "withdrawAddress": "z1qz3f6svf805tewktk5yf9tn8cdhe2236wdnugk",
+                "giveMomentumRewardPercentage": 0,
+                "giveDelegateRewardPercentage": 100,
+                "isRevocable": false,
+                "revokeCooldown": 94740,
+                "revokeTimestamp": 0,
+                "currentStats": {
+                    "producedMomentums": 0,
+                    "expectedMomentums": 73
+                },
+                "weight": 237213658559729
+            }
+        ]
+    }
 }
 ```
 
@@ -222,7 +226,7 @@ One parameter of type `string` that represents the `ownerAddress` of the Pillars
 
 An `array` of `entries`
 
-Same information as [embedded.pillar.getAll](#embedded.pillar.getAll)
+Same information as [embedded.pillar.getAll](#embedded.pillar.getAll) contains in its `list` field.
 
 ```json
 {
