@@ -7039,6 +7039,22 @@
                 display: none!important
             }
         }
+
+        .light-mode-toggle-btn {
+            width: 3rem;
+            position: absolute;
+            right: 2rem;
+            top: 1rem;
+        }
+        .light-mode-toggle-btn:hover{
+            cursor: pointer
+        }
+        @media (max-width: 768px) {
+            .light-mode-toggle-btn {
+                left: 2rem;
+                right: auto;
+            }
+        }
     </style>
     <!-- END extlib/css/bootstrap-3.0.0.min.css -->
     <!-- START extlib/js/jquery-1.8.3.min.js -->
@@ -17981,7 +17997,83 @@
     <script type="text/javascript">
         $.md.logThreshold = $.md.loglevel.DEBUG;
     </script>
-    <link rel="stylesheet" href="united.css" />
+    <link rel="stylesheet" href="united-light.css" id="light" class="alternate" disabled>
+    <link rel="stylesheet" href="united.css"  id="dark"  class="alternate">
+    <script>
+        var lightMode;
+
+        function enableStylesheet (node) {
+          node.disabled = false;
+        }
+        
+        function disableStylesheet (node) {
+          node.disabled = true;
+        }
+
+        function switchToLightMode(){
+            console.log("Switch to light mode")
+            document
+            .querySelectorAll('link[rel=stylesheet]#light')
+            .forEach(enableStylesheet);
+            document
+            .querySelectorAll('link[rel=stylesheet]#dark')
+            .forEach(disableStylesheet);
+        }
+        function switchToDarkMode(){
+            console.log("Switch to dark mode")
+            document
+            .querySelectorAll('link[rel=stylesheet]#dark')
+            .forEach(enableStylesheet);
+            document
+            .querySelectorAll('link[rel=stylesheet]#light')
+            .forEach(disableStylesheet);
+        }
+        
+        function toggleLightMode() {   
+          lightMode = !lightMode
+          console.log("new lightMode: ", lightMode)
+          if (lightMode){
+              switchToLightMode()  
+          } else {
+              switchToDarkMode()
+          }
+          window.localStorage.setItem('lightMode', lightMode)
+        //   changeLightIcon(!lightMode)
+        }
+        
+        function changeLightIcon(lightOrDark){
+            var img = document.querySelector('img.light-mode-toggle-btn');
+            if(lightOrDark){
+                img.src = "assets/icons/sun-white.png"
+            } else {
+                img.src = "assets/icons/moon-white-2.png"
+            }
+        }
+        lightMode = window.localStorage.getItem('lightMode')
+        console.log("lightMode: ", lightMode)
+        if(lightMode == null){
+            window.localStorage.setItem('lightMode', false);
+        } else {
+            if (lightMode === 'true') {
+                lightMode = true    
+                switchToLightMode()
+                
+            } else if (lightMode === 'false') {
+                lightMode = false
+            }
+        }
+
+        window.addEventListener('load', function () {
+            var nav = document.querySelector("div.collapse.navbar-collapse.navbar-ex1-collapse")
+            console.log(nav)
+            var img = document.createElement('img');
+            img.src = "assets/icons/brightness.png"
+            img.classList.add('light-mode-toggle-btn');
+            img.addEventListener("click", toggleLightMode);
+            nav.append(img)
+            // changeLightIcon(!lightMode)
+        })
+    </script>
 </head>
 
 <body>
@@ -17989,7 +18081,9 @@
         This website requires Javascript to be enabled. Please turn on Javascript
         and reload the page.
     </noscript>
-
+    
+    <button href="#" onclick="toggleLightMode();">STYLE 1</button> 
+    <button href="#" onclick="toggleLightMode();">STYLE 2</button>
     <div id="md-all">
     </div>
 </body>
