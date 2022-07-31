@@ -18038,17 +18038,8 @@
               switchToDarkMode()
           }
           window.localStorage.setItem('lightMode', lightMode)
-        //   changeLightIcon(!lightMode)
         }
         
-        function changeLightIcon(lightOrDark){
-            var img = document.querySelector('img.light-mode-toggle-btn');
-            if(lightOrDark){
-                img.src = "assets/icons/sun-white.png"
-            } else {
-                img.src = "assets/icons/moon-white-2.png"
-            }
-        }
         lightMode = window.localStorage.getItem('lightMode')
         console.log("lightMode: ", lightMode)
         if(lightMode == null){
@@ -18081,7 +18072,7 @@
         This website requires Javascript to be enabled. Please turn on Javascript
         and reload the page.
     </noscript>
-    
+
     <div id="md-all">
     </div>
 </body>
